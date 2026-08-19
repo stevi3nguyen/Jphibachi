@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JP Hibachi Mobile | Private Teppanyaki Catering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070908;
+      --bg-surface: #0e1310;
+      --bg-card: rgba(16, 23, 19, 0.85);
+      --bg-card-hover: rgba(22, 33, 27, 0.95);
+      --neon-green: #00ff66;
+      --neon-glow: rgba(0, 255, 102, 0.35);
+      --neon-emerald: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #94a3b8;
+      --border: rgba(0, 255, 102, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 255, 102, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 45%);
+    }
+
+    .glow-sphere {
+      position: fixed;
+      top: -15vw;
+      right: -15vw;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(0, 255, 102, 0.08) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(7, 9, 8, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 3px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 12px var(--neon-glow);
+      object-fit: contain;
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .brand-logo span {
+      color: var(--neon-green);
+      text-shadow: 0 0 12px var(--neon-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-green);
+    }
+
+    .nav-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #fff !important;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-social-btn:hover {
+      background: var(--neon-green);
+      color: #070908 !important;
+      border-color: var(--neon-green);
+      box-shadow: 0 0 12px var(--neon-glow);
+      transform: translateY(-2px);
+    }
+
+    .nav-cta {
+      background: var(--neon-green);
+      color: #070908 !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 30px;
+      font-weight: 700 !important;
+      box-shadow: 0 0 15px var(--neon-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 25px rgba(0, 255, 102, 0.6);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 255, 102, 0.1);
+      border: 1px solid var(--border);
+      color: var(--neon-green);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
+    }
+
+    .badge-location {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3.3rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 span {
+      color: var(--neon-green);
+      text-shadow: 0 0 20px var(--neon-glow);
+    }
+
+    .hero p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-neon {
+      display: inline-block;
+      background: var(--neon-green);
+      color: #070908;
+      padding: 0.95rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 20px var(--neon-glow);
+      transition: all 0.2s;
+    }
+
+    .btn-neon:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.7);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.95rem 1.6rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--neon-green);
+      background: rgba(0, 255, 102, 0.05);
+    }
+
+    /* Hero Portrait Frame */
+    .hero-photo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 35px rgba(0, 255, 102, 0.15);
+      background: var(--bg-surface);
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .photo-overlay-tag {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.2rem;
+      right: 1.2rem;
+      background: rgba(7, 9, 8, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      font-size: 0.88rem;
+    }
+
+    .photo-overlay-tag strong {
+      color: var(--neon-green);
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    /* VIP Spotlight Section */
+    .vip-section {
+      max-width: 1180px;
+      margin: 2rem auto 4.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .vip-card {
+      background: linear-gradient(135deg, rgba(16, 23, 19, 0.95), rgba(7, 9, 8, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 3rem;
+      align-items: center;
+      box-shadow: 0 0 40px rgba(0, 255, 102, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vip-card::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 255, 102, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .vip-img-box {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .vip-img-box img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vip-content h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .vip-badge {
+      display: inline-block;
+      background: rgba(0, 255, 102, 0.15);
+      color: var(--neon-green);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .vip-content p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .vip-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .vip-features li {
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .vip-features li::before {
+      content: "✓";
+      color: var(--neon-green);
+      font-weight: 800;
+    }
+
+    /* Travel Radius Banner */
+    .travel-banner {
+      background: rgba(0, 255, 102, 0.05);
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .travel-info h4 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .travel-info p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .travel-tag {
+      background: rgba(0, 255, 102, 0.15);
+      color: var(--neon-green);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+    }
+
+    /* Container Wrappers */
+    .section-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Clickable Setup Packages */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .package-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.2rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .package-card:hover {
+      border-color: var(--neon-green);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .pkg-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .pkg-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pkg-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(0, 255, 102, 0.12);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      color: var(--neon-green);
+      border: 1px solid var(--border);
+    }
+
+    .pkg-rate {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--neon-green);
+      margin-bottom: 1rem;
+    }
+
+    .package-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pkg-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 102, 0.1);
+      border: 1px solid var(--border);
+      color: var(--neon-green);
+      padding: 0.75rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      margin-top: auto;
+    }
+
+    .package-card:hover .pkg-action-btn {
+      background: var(--neon-green);
+      color: #070908;
+      box-shadow: 0 0 15px var(--neon-glow);
+    }
+
+    /* Menu Showcase */
+    .menu-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.05);
+    }
+
+    .menu-main h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .menu-price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--neon-green);
+      text-shadow: 0 0 15px var(--neon-glow);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .menu-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      text-shadow: none;
+    }
+
+    .protein-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .protein-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+
+    .protein-item:hover {
+      border-color: var(--border);
+    }
+
+    .sides-box {
+      background: rgba(0, 255, 102, 0.06);
+      border-left: 3px solid var(--neon-green);
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .sides-box strong {
+      color: #fff;
+    }
+
+    /* Upgrades Aside */
+    .upgrades-side {
+      border-left: 1px solid var(--border-subtle);
+      padding-left: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .upgrades-side h4 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #fff;
+    }
+
+    .upgrade-row {
+      margin-bottom: 1.3rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem;
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .upgrade-row:hover {
+      border-color: var(--border);
+    }
+
+    .up-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .up-cost {
+      color: var(--neon-green);
+    }
+
+    .up-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Booking Form */
+    .form-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .input-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      background: #060807;
+      border: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--neon-green);
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+    }
+
+    .submit-button {
+      width: 100%;
+      background: var(--neon-green);
+      color: #070908;
+      border: none;
+      padding: 1.1rem;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      box-shadow: 0 0 18px var(--neon-glow);
+      transition: all 0.2s;
+    }
+
+    .submit-button:hover {
+      box-shadow: 0 0 28px rgba(0, 255, 102, 0.7);
+      transform: translateY(-1px);
+    }
+
+    /* Footer & Socials */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .footer-logo-box {
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-logo-img {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 5px;
+      border: 1px solid var(--border);
+      object-fit: contain;
+    }
+
+    .footer-social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.55rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .social-badge-link:hover {
+      border-color: var(--neon-green);
+      background: rgba(0, 255, 102, 0.1);
+      color: var(--neon-green);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+
+    .social-badge-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .badge-row { justify-content: center; }
+      .hero p { margin: 0 auto 2rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-photo-frame img { height: 380px; }
+      .vip-card { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+      .vip-img-box img { height: 320px; }
+      .travel-banner { flex-direction: column; text-align: center; }
+      .menu-container { grid-template-columns: 1fr; padding: 2rem; }
+      .upgrades-side { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 2rem; }
+      .form-layout { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .protein-grid { grid-template-columns: 1fr; }
+      .footer-social-links { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-sphere"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-inner">
+      <a href="#" class="brand-wrap">
+        <img src="images/logo.jpg" alt="JP Hibachi Mobile Logo" class="nav-logo-img">
+        <div class="brand-logo">JP <span>HIBACHI</span> MOBILE</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about-vip">VIP Experience</a></li>
+        <li><a href="#services">Packages</a></li>
+        <li><a href="#menu">Menu</a></li>
+        
+        <!-- Social Icons in Nav -->
+        <li class="nav-socials">
+          <a href="https://www.tiktok.com/@jeanpierreamador/" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="TikTok">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43 6.27 6.27 0 0 0 1.88-4.43V8.84a8.28 8.28 0 0 0 4.85 1.56v-3.71z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/jp_hibachi_mobile/" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100076191707675" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+          </a>
+        </li>
+
+        <li><a href="#book" class="nav-cta">Reserve Chef</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div>
+      <div class="badge-row">
+        <div class="badge">🔥 Private Teppanyaki Catering</div>
+        <div class="badge-location">📍 Based in Stockton, CA</div>
+      </div>
+      <h1>The Live Hibachi Experience, <br><span>Brought To Your Door.</span></h1>
+      <p>Fresh proteins, signature fried rice, and an unforgettable culinary show crafted right in your backyard by Chef JP.</p>
+      <div class="hero-buttons">
+        <a href="#book" class="btn-neon">Check Availability</a>
+        <a href="#menu" class="btn-secondary">View Menu</a>
+      </div>
+    </div>
+
+    <!-- Chef JP Portrait -->
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img src="images/chef-portrait.jpg" alt="Chef JP Private Teppanyaki Chef">
+        <div class="photo-overlay-tag">
+          <strong>Chef JP</strong>
+          Master Teppanyaki &amp; Private Hibachi Specialist
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP Spotlight Section (Steph Curry) -->
+  <section id="about-vip" class="vip-section">
+    <div class="vip-card">
+      <div class="vip-img-box">
+        <img src="images/steph-curry.jpg" alt="Chef JP cooking private hibachi for Stephen Curry">
+      </div>
+      <div class="vip-content">
+        <div class="vip-badge">★ VIP Catering Highlight</div>
+        <h3>Cooked for Champions</h3>
+        <p>From private backyard birthdays to VIP gatherings catering for 4-time NBA Champion <strong>Stephen Curry</strong>, JP Hibachi Mobile delivers top-tier entertainment and elite flavors wherever the grill is fired up.</p>
+        
+        <ul class="vip-features">
+          <li>Custom backyard setups</li>
+          <li>Interactive flame shows</li>
+          <li>Fresh double-protein cuts</li>
+          <li>Clean, hassle-free cleanup</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Options & Travel Radius -->
+  <section id="services" class="section-wrap">
+    <div class="section-header">
+      <h2>Select Your Setup</h2>
+      <p>Click an option below to select it and jump directly to booking.</p>
+    </div>
+
+    <!-- Travel Policy Box -->
+    <div class="travel-banner">
+      <div class="travel-info">
+        <h4>📍 Stockton, CA Service Radius</h4>
+        <p>Free travel within 15 miles of Stockton, CA. Locations beyond 15 miles add $3/mile travel fee.</p>
+      </div>
+      <div class="travel-tag">No Travel Fee Under 15 Miles</div>
+    </div>
+
+    <div class="packages-grid">
+      <!-- Full Service Card (Clickable) -->
+      <div class="package-card" onclick="selectSetupAndScroll('With Tables & Chairs (+$10/person)')">
+        <div>
+          <div class="pkg-top">
+            <div class="pkg-title">Full Setup &amp; Seating</div>
+            <span class="pkg-tag">Most Popular</span>
+          </div>
+          <div class="pkg-rate">+$10 per person • Min. 12 Guests</div>
+          <p>Complete backyard dining arrangement with tables and chairs included. <strong>Includes complimentary fresh garden salad</strong> served before the show.</p>
+        </div>
+        <div class="pkg-action-btn">Select Full Setup &amp; Reserve ↓</div>
+      </div>
+
+      <!-- Chef & Grill Only Card (Clickable) -->
+      <div class="package-card" onclick="selectSetupAndScroll('No Tables & Chairs (Grill & Chef Only)')">
+        <div>
+          <div class="pkg-top">
+            <div class="pkg-title">Chef &amp; Grill Only</div>
+            <span class="pkg-tag">Self-Seating</span>
+          </div>
+          <div class="pkg-rate">Standard Pricing • Min. 20 Guests</div>
+          <p>You provide your own patio tables and chairs. We bring the full teppanyaki grill station, prepped ingredients, chef, and entertainment.</p>
+        </div>
+        <div class="pkg-action-btn">Select Chef Only &amp; Reserve ↓</div>
+      </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div id="menu" class="menu-container">
+      <div class="menu-main">
+        <h3>Double Protein Course</h3>
+        <div class="menu-price">$55 <span>/ guest</span></div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+          Each guest chooses any <strong>2 proteins</strong>:
+        </p>
+
+        <div class="protein-grid">
+          <div class="protein-item">🍗 Chicken</div>
+          <div class="protein-item">🥩 Angus Choice New York Steak</div>
+          <div class="protein-item">🦐 Shrimp</div>
+          <div class="protein-item">🐟 Fresh Salmon</div>
+        </div>
+
+        <div class="sides-box">
+          <strong>Includes:</strong> Teppan Fried Rice, Sautéed Hibachi Vegetables, and Signature Dipping Sauces. <em>(Includes Salad when choosing Tables &amp; Chairs).</em>
+        </div>
+      </div>
+
+      <!-- Upgrades -->
+      <div class="upgrades-side">
+        <h4>Menu Add-Ons</h4>
+
+        <div class="upgrade-row">
+          <div class="up-top">
+            <span>Premium Steak Upgrade</span>
+            <span class="up-cost">+$10 / guest</span>
+          </div>
+          <div class="up-detail">Upgrade your steak selection to <strong>Filet Mignon</strong> or <strong>Ribeye</strong> (Min. 12 guests).</div>
+        </div>
+
+        <div class="upgrade-row">
+          <div class="up-top">
+            <span>Add a 3rd Protein</span>
+            <span class="up-cost">+$10 / guest</span>
+          </div>
+          <div class="up-detail">Add an extra full portion of Chicken, New York Steak, Shrimp, or Fresh Salmon per plate.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Form with FormSubmit Integration -->
+  <section id="book" class="section-wrap" style="padding-top: 0;">
+    <div class="section-header">
+      <h2>Reserve Your Date</h2>
+      <p>Submit your event details below and Chef JP will confirm availability with you directly.</p>
+    </div>
+
+    <div class="form-container">
+      <!-- NOTE: Replace YOUR_EMAIL@gmail.com below with Chef JP's actual email address -->
+      <form action="https://formsubmit.co/stevienguyen08@gmail.com" method="POST">
+        <!-- FormSubmit Hidden Settings -->
+        <input type="hidden" name="_subject" value="🔥 New Booking Request - JP Hibachi Mobile">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-layout">
+          <div class="input-group">
+            <label for="name">Contact Name</label>
+            <input type="text" id="name" name="Contact_Name" required placeholder="Your full name">
+          </div>
+
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="Phone_Number" required placeholder="(555) 000-0000">
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="Email_Address" required placeholder="your.email@example.com">
+          </div>
+
+          <div class="input-group">
+            <label for="date">Event Date</label>
+            <input type="date" id="date" name="Event_Date" required>
+          </div>
+
+          <div class="input-group">
+            <label for="guests">Total Guests</label>
+            <input type="number" id="guests" name="Total_Guests" min="12" required placeholder="Min 12 or 20">
+          </div>
+
+          <div class="input-group full">
+            <label for="setup">Setup Option</label>
+            <select id="setup" name="Setup_Option" required>
+              <option value="" disabled selected>Select table &amp; chair option</option>
+              <option value="With Tables & Chairs (+$10/person)">With Tables &amp; Chairs (+$10/person, Min 12 - Salad Included)</option>
+              <option value="No Tables & Chairs (Grill & Chef Only)">No Tables &amp; Chairs (Grill &amp; Chef Only, Min 20)</option>
+            </select>
+          </div>
+
+          <div class="input-group full">
+            <label for="address">Event Location / Address (Stockton, CA + Surrounding Areas)</label>
+            <input type="text" id="address" name="Event_Address" required placeholder="City &amp; Zip Code (Travel fee calculated if > 15 mi from Stockton)">
+          </div>
+
+          <div class="input-group full">
+            <label for="notes">Special Requests &amp; Upgrades</label>
+            <textarea id="notes" name="Special_Requests_Upgrades" rows="3" placeholder="Filet Mignon/Ribeye upgrades, extra proteins, or dietary notes..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">Submit Booking Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo-box">
+      <img src="images/logo.jpg" alt="JP Hibachi Mobile Logo" class="footer-logo-img">
+    </div>
+
+    <!-- Social Media Badges -->
+    <div class="footer-social-links">
+      <a href="https://www.tiktok.com/@jeanpierreamador/" target="_blank" rel="noopener noreferrer" class="social-badge-link">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43 6.27 6.27 0 0 0 1.88-4.43V8.84a8.28 8.28 0 0 0 4.85 1.56v-3.71z"/></svg>
+        <span>TikTok</span>
+      </a>
+
+      <a href="https://www.instagram.com/jp_hibachi_mobile/" target="_blank" rel="noopener noreferrer" class="social-badge-link">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span>Instagram</span>
+      </a>
+
+      <a href="https://www.facebook.com/profile.php?id=100076191707675" target="_blank" rel="noopener noreferrer" class="social-badge-link">
+        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        <span>Facebook</span>
+      </a>
+    </div>
+
+    <p>&copy; 2026 JP Hibachi Mobile • Based in Stockton, CA • All rights reserved.</p>
+  </footer>
+
+  <!-- Script to select option & smooth scroll to booking form -->
+  <script>
+    function selectSetupAndScroll(optionValue) {
+      const setupSelect = document.getElementById('setup');
+      if (setupSelect) {
+        setupSelect.value = optionValue;
+      }
+      const bookSection = document.getElementById('book');
+      if (bookSection) {
+        bookSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+
+</body>
+</html>
